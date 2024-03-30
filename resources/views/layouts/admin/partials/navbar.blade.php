@@ -14,13 +14,10 @@
                     <a href="{{ url('/data_admin') }}" class="nav-link">Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Data Booking</a>
+                    <a href="{{ url('/data_transaksi') }}" class="nav-link">Transaksi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Saran</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">Kelola Studio</a>
+                    <a href="{{ url('/data_saran') }}" class="nav-link">Saran</a>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="POST">

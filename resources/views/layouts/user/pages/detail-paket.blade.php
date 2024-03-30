@@ -56,44 +56,44 @@
                     <div class="row">
                         <div class="col-6">
                             <ul>
-                                <li>Studio 12m x 4m</li>
-                                <li>Mirror 12m x 4m</li>
-                                <li>Vinyl</li>
-                                <li>Speaker BMB Bluetooth</li>
+                                @foreach ($dataFasilitas as $item)
+                                    <li>
+                                        {{ $item->nama }}
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="col-6">
-                            <ul>
-                                <li>AC</li>
-                                <li>Wallfan</li>
-                                <li>Lighting</li>
-                                <li>Tripod</li>
-                            </ul>
+                            <div class="card shadow border-0">
+                                <div class="card-body">
+                                    <p>
+                                        <span><b>
+
+                                                Nama</b></span>: {{ $detail->name }}
+                                    </p>
+                                    <p>
+                                        <span><b>Harga</b></span>: Rp. {{ $detail->amount }}
+                                    </p>
+                                    <p class="mb-2">
+                                        <span><b>Durasi Sewa</b></span>: {{ $detail->duration_start }} s/d
+                                        {{ $detail->duration_end }}
+                                        menit
+                                    </p>
+                                    @if (Auth::check())
+                                        <form method="POST"
+                                            action="{{ url('/create_payment', ['id_paket' => $detail->id_paket]) }}">
+                                            @csrf
+                                            <label for="" class="mb-2"><b>Tanggal Sewa</b></label>
+                                            <input type="datetime-local" name="tanggal_pesan" id="tanggal_pesan" class="form-control mb-2">
+                                            <button type="submit" class="btn btn-sm btn-primary">Pesan Sekarang</button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <p>
-                            <span><b>
 
-                                    Nama</b></span>: {{ $detail->name }}
-                        </p>
-                        <p>
-                            <span><b>Harga</b></span>: Rp. {{ $detail->amount }}
-                        </p>
-                        <p>
-                            <span><b>Durasi Sewa</b></span>: {{ $detail->duration_start }} s/d {{ $detail->duration_end }}
-                            menit
-                        </p>
-                        @if (Auth::check())
-                            <form method="POST" action="{{ url('/create_payment', ['id_paket' => $detail->id_paket]) }}">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-primary">Pesan Sekarang</button>
-                            </form>
-                        @endif
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@
             <div class="col-md-4">
                 <div class="card shadow border-0 bg-warning text-light">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $totalSaran }}</h5>
+                        <h5 class="card-title">{{ $totalPesan }}</h5>
                         <p class="card-text">Jumlah Pesan</p>
                     </div>
                 </div>
@@ -66,7 +66,8 @@
                             </tbody>
                         </table>
                         @if (count($userData) >= 1)
-                            <a class="text-end text-dark" style="text-decoration: none" href="{{url('/data_pengguna')}}">Show All</a>
+                            <a class="text-end text-dark" style="text-decoration: none"
+                                href="{{ url('/data_pengguna') }}">Show All</a>
                         @endif
                     </div>
                 </div>
@@ -100,7 +101,8 @@
                             </tbody>
                         </table>
                         @if (count($userData) >= 1)
-                        <a class="text-end text-dark" style="text-decoration: none" href="{{url('/data_admin')}}">Show All</a>
+                            <a class="text-end text-dark" style="text-decoration: none"
+                                href="{{ url('/data_admin') }}">Show All</a>
                         @endif
                     </div>
                 </div>
@@ -119,33 +121,43 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
                                 <th>No Hp</th>
                                 <th>Paket</th>
                                 <th>Harga</th>
+                                <th>Metode Pembayaran</th>
+                                <th>Jenis Pembayaran</th>
                                 <th>Status Pembayaran</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dataPesan as $user)
+                            @if (!$dataPesan->isEmpty())
+                                @foreach ($dataPesan as $user)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->users->nama }}</td>
+                                        <td>{{ $user->users->no_hp }}</td>
+                                        <td>{{ $user->paket->name }}</td>
+                                        <td>{{ $user->paket->amount }}</td>
+                                        <td>{{ $user->payment_method }}</td>
+                                        <td>{{ $user->payment_channel }}</td>
+                                        <td>{{ $user->payment_status }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->users->nama }}</td>
-                                    <td>{{ $user->users->email }}</td>
-                                    <td>{{ $user->users->no_hp }}</td>
-                                    <td>{{ $user->paket->name }}</td>
-                                    <td>{{ $user->paket->amount }}</td>
-                                    <td>{{ $user->payment_status }}</td>
-                                    <td>
-                                        <a href="" class="btn btn-sm btn-primary">
-                                            Detail
-                                        </a>
+                                    <td colspan="12" class="text-center">
+                                        <div class="alert alert-info mt-4">
+                                            <h5>Data Transaksi Tidak Ada</h5>
+                                        </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
+                    @if (count($dataPesan) >= 1)
+                        <a class="text-end text-dark" style="text-decoration: none"
+                            href="{{ url('/data_transaksi') }}">Show All</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -169,22 +181,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($saranData as $user)
+                            @if (!$saranData->isEmpty())
+                                @foreach ($saranData as $user)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td> <!-- Nomor urut -->
+                                        <td>{{ $user->nama }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->isi_saran }}</td>
+                                        <td>{{ $user->created_at }}</td>
+                                        <td>
+                                            <a href="mailto:{{ $user->email }}" class="btn btn-sm btn-primary">
+                                                Balas
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td> <!-- Nomor urut -->
-                                    <td>{{ $user->nama }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->isi_saran }}</td>
-                                    <td>{{ $user->created_at }}</td>
-                                    <td>
-                                        <a href="mailto:{{ $user->email }}" class="btn btn-sm btn-primary">
-                                            Balas
-                                        </a>
+                                    <td colspan="8" class="text-center">
+                                        <div class="alert alert-info mt-4">
+                                            <h5>Data Saran Tidak Ada</h5>
+                                        </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
+                    @if (count($saranData) >= 1)
+                        <a class="text-end text-dark" style="text-decoration: none"
+                            href="{{ url('/data_saran') }}">Show All</a>
+                    @endif
                 </div>
             </div>
         </div>

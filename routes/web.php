@@ -35,6 +35,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/data_pengguna', [DashboardController::class, 'dataUser']);
     Route::get('/data_admin', [DashboardController::class, 'dataAdmin']);
     Route::get('/data_saran', [DashboardController::class, 'dataSaran']);
+    Route::get('/data_transaksi', [DashboardController::class, 'dataTransaksi']);
     Route::get('/data_fasilitas', [FasilitasController::class, 'index']);
     Route::get('/edit_fasilitas/{id}', [FasilitasController::class, 'show']);
     Route::post('/delete_fasilitas/{id}', [FasilitasController::class, "destroy"]);

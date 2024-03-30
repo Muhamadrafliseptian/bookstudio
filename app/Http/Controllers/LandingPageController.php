@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitas;
 use App\Models\Paket;
 use App\Models\PaymentTransaction;
 use App\Models\Saran;
@@ -36,8 +37,8 @@ class LandingPageController extends Controller
     {
         return DB::transaction(function () use ($id) {
             $data["detail"] = Paket::where("id_paket", $id)->first();
-
-            return view('layouts.user.pages.detail-paket', $data);
+            $dataFasilitas["dataFasilitas"] = Fasilitas::get();
+            return view('layouts.user.pages.detail-paket', $data, $dataFasilitas);
         });
     }
     public function historyBooking()

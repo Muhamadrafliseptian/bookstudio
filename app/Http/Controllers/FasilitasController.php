@@ -20,6 +20,9 @@ class FasilitasController extends Controller
             "detail" => $detail
         ]);
     }
+    public function update(Request $request, $id){
+        
+    }
     public function destroy($id)
     {
         return DB::transaction(function() use ($id) {

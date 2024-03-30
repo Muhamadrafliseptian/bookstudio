@@ -16,10 +16,11 @@ class DashboardController extends Controller
         $totalAdmin = User::where('level', 0)->count();
         $totalUser = User::where('level', 1)->count();
         $totalSaran = Saran::get()->count();
+        $totalPesan = PaymentTransaction::get()->count();
         $userData = User::where('level', 1)->take(1)->latest()->get();
         $adminData = User::where('level', 0)->take(1)->latest()->get();
         $saranData = Saran::latest()->get();
-        $dataPesan = PaymentTransaction::get();
+        $dataPesan = PaymentTransaction::latest()->take(1)->get();
 
         foreach ($saranData as $saran) {
             $saran->created_at = Carbon::parse($saran->created_at)->setTimezone('Asia/Jakarta');
@@ -28,11 +29,12 @@ class DashboardController extends Controller
         return view('layouts.admin.pages.index', [
             'totalAdmin' => $totalAdmin,
             'totalUser' => $totalUser,
+            'totalSaran' => $totalSaran,
+            "totalPesan" => $totalPesan,
             'userData' => $userData,
             'adminData' => $adminData,
             'saranData' => $saranData,
-            'totalSaran' => $totalSaran,
-            "dataPesan" => $dataPesan
+            "dataPesan" => $dataPesan,
         ]);
     }
     public function dataUser()
@@ -63,6 +65,16 @@ class DashboardController extends Controller
         }
         return view('layouts.admin.pages.saran', [
             "dataSaran" => $dataSaran
+        ]);
+    }
+    public function dataTransaksi()
+    {
+        $dataTransaksi = PaymentTransaction::latest()->get();
+        foreach ($dataTransaksi as $data) {
+            $data->created_at = Carbon::parse($data->created_at)->setTimezone('Asia/Jakarta');
+        }
+        return view('layouts.admin.pages.index-transaksi', [
+            "dataTransaksi" => $dataTransaksi
         ]);
     }
     public function showPayment()

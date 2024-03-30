@@ -47,7 +47,7 @@ class PaymentController extends Controller
             'payment_status' => $invoice['status'],
             'user_id' => $user->id,
             'paket_id' => $id_paket,
-            'tanggal_pesan' => Carbon::now()
+            'tanggal_pesan' => $request->tanggal_pesan
         ]);
 
         return redirect($invoice['invoice_url']);

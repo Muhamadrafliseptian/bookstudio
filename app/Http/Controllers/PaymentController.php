@@ -29,15 +29,15 @@ class PaymentController extends Controller
             'success_redirect_url' => 'http://127.0.0.1:8000/history_booking',
             "invoice_duration" => 1800,
             "locale" => "id",
-            // 'customer' => [
-            //     'email' => $user->email,
-            //     'mobile_number' => $user->no_hp
-            // ],
-            // "customer_notification_preference" => [
-            //     "invoice_created" => ["whatsapp", "email"],
-            //     "invoice_reminder" => ["whatsapp", "email"],
-            //     "invoice_paid" => ["whatsapp", "email"],
-            // ]
+            'customer' => [
+                'email' => $user->email,
+                'mobile_number' => $user->no_hp
+            ],
+            "customer_notification_preference" => [
+                "invoice_created" => ["whatsapp", "email"],
+                "invoice_reminder" => ["whatsapp", "email"],
+                "invoice_paid" => ["whatsapp", "email"],
+            ]
         ]);
 
         $invoice = $response->json();

@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h4>Contact Us</h4>
+                <h4>Kotak Saran</h4>
                 <form action="/send_saran" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
                     <div class="mb-3">
@@ -14,7 +14,7 @@
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
+                        <label for="message" class="form-label">Saran</label>
                         <textarea class="form-control" id="isi_saran" name="isi_saran" rows="3" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

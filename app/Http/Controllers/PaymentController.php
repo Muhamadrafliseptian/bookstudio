@@ -39,6 +39,7 @@ class PaymentController extends Controller
                 "invoice_paid" => ["whatsapp", "email"],
             ]
         ]);
+        $tanggal_pesan = Carbon::createFromFormat('Y-m-d\TH:i', $request->tanggal_pesan, 'Asia/Jakarta');
 
         $invoice = $response->json();
         PaymentTransaction::create([
@@ -47,7 +48,7 @@ class PaymentController extends Controller
             'payment_status' => $invoice['status'],
             'user_id' => $user->id,
             'paket_id' => $id_paket,
-            'tanggal_pesan' => $request->tanggal_pesan
+            'tanggal_pesan' => $tanggal_pesan,
         ]);
 
         return redirect($invoice['invoice_url']);

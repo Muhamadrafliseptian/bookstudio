@@ -17,10 +17,17 @@
                                         <p class="mb-0">Nama: <b>{{ $item->users->nama }}</b></p>
                                         <p class="mb-0">Jenis Paket: <b>{{ $item->paket->name }}</b></p>
                                         <p class="mb-2">Harga: Rp. <b>{{ $item->paket->amount }}</b></p>
+                                        <p class="mb-0">Tanggal Sewa:
+                                            {{$item->tanggal_pesan}}
+                                        </p>
+
                                     </div>
                                     <div class="col-12">
                                         <h5>Detail Pembayaran</h5>
-                                        <p class="mb-0">Tanggal Booking: {{ $item->tanggal_pesan }}</p>
+                                        <p class="mb-0">Tanggal Booking:
+                                            {{ \Carbon\Carbon::parse($item->created_at)->timezone('Asia/Jakarta')->format('d M Y, H:i') }}
+                                        </p>
+
                                         @if ($item->payment_status === 'PENDING')
                                             <p>Status Pembayaran: <span
                                                     class="text-danger"><b>{{ $item->payment_status }}</b></span></p>

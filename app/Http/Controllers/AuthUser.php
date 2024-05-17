@@ -60,7 +60,7 @@ class AuthUser extends Controller
                     $request->session()->regenerate();
                     $request->session()->put('level', $cek->level);
                     $request->session()->put('username', $cek->nama);
-                    echo ($request->session()->put('username', $cek->nama));
+                    // echo ($request->session()->put('username', $cek->nama));
                     if ($cek->level == 0) {
                         return redirect('/dashboard');
                     } else if ($cek->level == 1) {

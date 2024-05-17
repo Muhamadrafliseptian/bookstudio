@@ -11,24 +11,24 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('assets/landing-page/images/1.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('assets/landing-page/images/6.jpg') }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
+                    <h5>MIC DANCE STUDIO</h5>
+                    <p>.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/landing-page/images/2.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('assets/landing-page/images/5.jpg') }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
+                    <h5>MIC DANCE STUDIO</h5>
+                    <p>.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/landing-page/images/3.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('assets/landing-page/images/4.jpg') }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
+                    <h5>MIC DANCE STUDIO</h5>
+                    <p>Teacher Of MIC DANCE STUDIO.</p>
                 </div>
             </div>
         </div>

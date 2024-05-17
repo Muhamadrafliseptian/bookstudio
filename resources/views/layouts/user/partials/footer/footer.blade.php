@@ -22,7 +22,8 @@
             </div>
             <div class="col-md-6">
                 <h4>Location</h4>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.157062988852!2d106.87880507409476!3d-6.109544659916733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1fb915c254c3%3A0x1d00c5e910d1df80!2sTanjung%20Priok!5e0!3m2!1sid!2sid!4v1711374558218!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.4276896877577!2d104.75092297408979!3d-2.9787205969973733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b77736ee962c9%3A0xa490d04f3a733818!2sMIC%20ENTERTAINTMENT%E2%80%A2DANCE%20STUDIO!5e0!3m2!1sid!2sid!4v1713976892876!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.157062988852!2d106.87880507409476!3d-6.109544659916733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1fb915c254c3%3A0x1d00c5e910d1df80!2sTanjung%20Priok!5e0!3m2!1sid!2sid!4v1711374558218!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
             </div>
         </div>
     </div>

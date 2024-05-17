@@ -16,7 +16,7 @@ class PaymentController extends Controller
         $user = Auth::user();
 
         $paket = Paket::where("id_paket", $id_paket)->first();
-        $xenditSecretKey = 'xnd_development_8NKXeQg1kJ3abwLfZEFozhxfS2v6TkZTIVK5BRkZsrrBQEKHmsB9mW7viOU00';
+        $xenditSecretKey = 'xnd_development_hb0K2VLL1elx9nYHcgRMEm6EpRC32qevlUh65v9rZYWWvj8YN1xgheNQ1C897H5';
 
         $response = Http::withHeaders([
             'Authorization' => 'Basic ' . base64_encode($xenditSecretKey . ':'),

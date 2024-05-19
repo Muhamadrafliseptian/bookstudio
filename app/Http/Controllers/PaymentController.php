@@ -13,8 +13,8 @@ class PaymentController extends Controller
 {
     public function createPayment(Request $request, $id_paket)
     {
-
         $waktuPesanCarbon = Carbon::createFromFormat('H:i', $request->waktu_pesan);
+
         $startTime = Carbon::createFromTime(10, 0, 0);
         $endTime = Carbon::createFromTime(22, 0, 0);
 
@@ -22,6 +22,24 @@ class PaymentController extends Controller
             $user = Auth::user();
 
             $paket = Paket::where("id_paket", $id_paket)->first();
+
+            $currentDateTime = Carbon::now("Asia/Jakarta");
+            $currentDate = $currentDateTime->toDateString();
+            $currentTime = $currentDateTime->format("H:i");
+
+            if ($request->tanggal_pesan == $currentDate && $request->waktu_pesan <= $currentTime) {
+                return back()->with("error", "Tidak Bisa Booking Karena Waktu Sudah Lewat");
+            }
+
+            $existingBooking = PaymentTransaction::where("tanggal_pesan", $request->tanggal_pesan)
+                            ->where("paket_id", $paket->id_paket)
+                            ->where("waktu_pesan", $request->waktu_pesan)
+                            ->first();
+
+            if ($existingBooking) {
+                return back()->with("error", "Tidak Bisa Booking Karena Waktu Sudah di Pesan");
+            }
+
             $xenditSecretKey = 'xnd_development_b08GFNgK4ERdx3do9HtFXOnMAcJlrj75tGJh15Nd1OA9YxuOY342GBmESts4T';
 
             $response = Http::withHeaders([

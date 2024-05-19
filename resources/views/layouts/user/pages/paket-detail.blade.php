@@ -103,9 +103,20 @@
                                                         Waktu Sewa
                                                     </strong>
                                                 </label>
-                                                <input type="time" name="waktu_pesan" id="waktu_pesan" class="form-control mb-2" required>
+                                                <select name="waktu_pesan" class="form-control" id="waktu_pesan">
+                                                    <option value="">- Pilih -</option>
+                                                    @php
+                                                        $startHour = 10;
+                                                        $endHour = 21;
+
+                                                        for ($hour = $startHour; $hour <= $endHour; $hour++) {
+                                                            $time = str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00';
+                                                            echo "<option value=\"$time\">$time</option>";
+                                                        }
+                                                    @endphp
+                                                </select>
                                             </div>
-                                            <button type="submit" class="btn btn-sm btn-primary">Pesan Sekarang</button>
+                                            <button type="submit" class="btn btn-sm btn-primary mt-3">Pesan Sekarang</button>
                                         </form>
                                     @endif
                                 </div>

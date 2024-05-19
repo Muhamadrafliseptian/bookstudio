@@ -97,7 +97,9 @@
                                                         Waktu Sewa
                                                     </strong>
                                                 </label>
-                                                <input type="time" name="waktu_pesan" id="waktu_pesan" class="form-control mb-2" required>
+                                                <select name="waktu_pesan" class="form-control" id="waktu_pesan">
+                                                    <option value="">- Pilih -</option>
+                                                </select>
                                             </div>
                                             <button type="submit" class="btn btn-sm btn-primary">Pesan Sekarang</button>
                                         </form>

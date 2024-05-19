@@ -27,6 +27,10 @@ class PaymentController extends Controller
             $currentDate = $currentDateTime->toDateString();
             $currentTime = $currentDateTime->format("H:i");
 
+            if ($request->tanggal_pesan < $currentDate) {
+                return back()->with("error", "Tidak Bisa Booking Karena Tanggal Sudah Lewat");
+            }
+
             if ($request->tanggal_pesan == $currentDate && $request->waktu_pesan <= $currentTime) {
                 return back()->with("error", "Tidak Bisa Booking Karena Waktu Sudah Lewat");
             }

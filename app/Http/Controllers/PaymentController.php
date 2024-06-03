@@ -7,6 +7,7 @@ use App\Models\PaymentTransaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
@@ -23,6 +24,8 @@ class PaymentController extends Controller
 
             $paket = Paket::where("id_paket", $id_paket)->first();
 
+            $durationMinutes = $paket->duration_end;
+
             $currentDateTime = Carbon::now("Asia/Jakarta");
             $currentDate = $currentDateTime->toDateString();
             $currentTime = $currentDateTime->format("H:i");
@@ -35,13 +38,24 @@ class PaymentController extends Controller
                 return back()->with("error", "Tidak Bisa Booking Karena Waktu Sudah Lewat");
             }
 
-            $existingBooking = PaymentTransaction::where("tanggal_pesan", $request->tanggal_pesan)
-                            ->where("paket_id", $paket->id_paket)
-                            ->where("waktu_pesan", $request->waktu_pesan)
-                            ->first();
+            $bookingEndTime = $waktuPesanCarbon->copy()->addMinutes($durationMinutes);
+
+            $existingBooking = PaymentTransaction::where('tanggal_pesan', $request->tanggal_pesan)
+                ->where('paket_id', $id_paket)
+                ->where(function ($query) use ($waktuPesanCarbon, $bookingEndTime) {
+                    $query->where(function ($query) use ($waktuPesanCarbon, $bookingEndTime) {
+                        $query->whereBetween('waktu_pesan', [$waktuPesanCarbon, $bookingEndTime]);
+                    })
+                        ->orWhere(function ($query) use ($waktuPesanCarbon, $bookingEndTime) {
+                            $query->whereBetween('waktu_pesan', [$waktuPesanCarbon->subSecond(), $bookingEndTime->subSecond()]);
+                        });
+                })
+                ->first();
+
+
 
             if ($existingBooking) {
-                return back()->with("error", "Tidak Bisa Booking Karena Waktu Sudah di Pesan");
+                return back()->with("error", "Tidak Bisa Booking");
             }
 
             $xenditSecretKey = 'xnd_development_b08GFNgK4ERdx3do9HtFXOnMAcJlrj75tGJh15Nd1OA9YxuOY342GBmESts4T';
@@ -85,6 +99,7 @@ class PaymentController extends Controller
             return back()->with("error", "Tidak Bisa Booking Karena Bukan Waktu Yang Ditentukan");
         }
     }
+
     public function callbackReturn(Request $request)
     {
         $user = Auth::user();

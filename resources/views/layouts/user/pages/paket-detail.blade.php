@@ -74,16 +74,26 @@
                             <div class="card shadow border-0">
                                 <div class="card-body">
                                     <p>
-                                        <span><b>
-
-                                                Nama</b></span>: {{ $detail->name }}
+                                        <span>
+                                            <b>
+                                                Nama
+                                            </b>
+                                        </span>
+                                        : {{ $detail->name }}
                                     </p>
                                     <p>
-                                        <span><b>Harga</b></span>: Rp. {{ $detail->amount }}
+                                        <span>
+                                            <b>
+                                                Harga
+                                            </b>
+                                        </span>
+                                        : Rp. {{ $detail->amount }}
                                     </p>
                                     <p class="mb-2">
-                                        <span><b>Durasi Sewa</b></span>: {{ $detail->duration_start }} s/d
-                                        {{ $detail->duration_end }}
+                                        <span>
+                                            <b>Durasi Sewa</b>
+                                        </span>
+                                        : {{ $detail->duration_start }} s/d {{ $detail->duration_end }}
                                         menit
                                     </p>
                                     @if (Auth::check())
